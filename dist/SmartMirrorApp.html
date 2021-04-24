@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Главная</title>
+<link href="/HomePage_mobile.ce0387a5.css" rel="stylesheet" type="text/css">
+<link href="/Mobile-phone.38a8a6e5.css" rel="stylesheet" type="text/css">
+<link href="/WidgetPage-mobile.cd347bb9.css" rel="stylesheet" type="text/css">
+<script src="/HomePage_mobile.ce0387a5.js"></script><script src="/Mobile-phone.38a8a6e5.js"></script><script src="/WidgetPage-mobile.cd347bb9.js"></script></head>
+
+<body class="general_style typeface">
+<header class="top-menu">
+  <nav class="menu-wrap">
+    <h1 class="visually-hidden">Главная</h1>
+    <img class="logo-menu" src="/main_logo.e1a03835.png" alt="logo"> 
+  </nav>
+</header>
+<main class="main-wrapper" id="home_page">
+  <p class="user-greeting">Доброе утро, Данил!</p>
+  <h2>Мои виджеты</h2>
+  <div class="widgets">
+      <button type="button" class="widget-style" data-action="greeting">
+        <h3 class="widget-name">Приветствие</h3>
+        <img src="/greeting-icon.4acdcb2c.png" class="icon-style" alt="wid-icon">
+      <div class="toggle"> 
+        <label class="switch">
+          <input type="checkbox" checked="">
+          <span class="slider round"></span>
+        </label>
+      </div>	
+    </button>
+	 <button type="button" class="widget-style" data-action="clock">
+			<h3 class="widget-name">Время</h3>
+			<img src="/Clock-icon.64fc9a33.png" class="icon-style" alt="wid-icon">
+      <div class="toggle"> 
+			<label class="switch">
+			  <input type="checkbox" checked="">
+			  <span class="slider round"></span>
+			</label>
+      </div>
+		</button>	
+     
+      <button type="button" class="widget-style" data-action="weather">
+        <h3 class="widget-name">Погода</h3>
+        <img src="/weather-icon.cefc3af9.png" class="icon-style" alt="wid-icon">
+        <div class="toggle"> 
+        <label class="switch">
+          <input type="checkbox" checked="">
+          <span class="slider round"></span> </label>
+          </div>
+        </button>
+
+      <button type="button" class="widget-style" data-action="reminder">
+        <h3 class="widget-name">Напоминания</h3>
+        <img src="/reminder-icon.a6dfdea8.png" class="icon-style" alt="wid-icon">
+        <div class="toggle"> 
+        <label class="switch">
+          <input type="checkbox" checked="">
+          <span class="slider round"></span>
+		</label>
+    </div>
+  </button>
+  </div>
+</main>
+<main class="main-wrapper" id="widget_page" hidden="">
+  <nav class="page-name">
+    <h1 class="heading">Дата и Время</h1>
+    <button type="button" class="arrow" id="back"></button> 
+  </nav>
+  <div class="form" hidden="">
+    <form action="" method="GET" name="time">
+      <label for="time-zones">Часовой пояс</label>
+      <select name="time-zones" id="time-zones">
+        <option value="Moscow">Москва (GMT+3)</option>
+      </select>
+    </form>
+    <form action="" method="GET" name="location" hidden="">
+      <label for="locations">Город</label>
+      <select name="locations" id="locations">
+        <option value="SPb">Санкт-Петербург</option>
+        <option value="Msc">Москва</option>
+      </select>
+    </form>
+  </div>
+  <form action="" name="wid_positioning">
+    <h2>Выбирете расположение</h2>
+    <div class="positioning">
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="1" checked="">
+            <span class="visually-hidden">Позиция 1</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="2">
+            <span class="visually-hidden">Позиция 2</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="3">
+            <span class="visually-hidden">Позиция 3</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="4">
+            <span class="visually-hidden">Позиция 4</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="5">
+            <span class="visually-hidden">Позиция 5</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="6">
+            <span class="visually-hidden">Позиция 6</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="7">
+            <span class="visually-hidden">Позиция 7</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="8">
+            <span class="visually-hidden">Позиция 8</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="9">
+            <span class="visually-hidden">Позиция 9</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="10">
+            <span class="visually-hidden">Позиция 10</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="11">
+            <span class="visually-hidden">Позиция 11</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="12">
+            <span class="visually-hidden">Позиция 12</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="13">
+            <span class="visually-hidden">Позиция 13</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="14">
+            <span class="visually-hidden">Позиция 14</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="15">
+            <span class="visually-hidden">Позиция 15</span> </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="widgetposition" value="16">
+            <span class="visually-hidden">Позиция 16</span> </label>
+        </li>
+      </ul>
+    </div>
+  </form>
+</main>
+<script src="/indexApp.867eea62.js"></script>	
+</body>
+</html>

@@ -1,0 +1,157 @@
+@charset "utf-8";
+body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 600px;
+}
+h1 {
+  margin: 0 auto;
+  padding-top: 8px;
+  padding-right: 15px;
+  height: 28px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  color: #F4F5FD;
+}
+h2 {
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 120%;
+}
+h3 {
+  font-weight: 500;
+  font-size: 17px;
+}
+.general_style {
+  background-color: #28262C;
+}
+.typeface {
+  font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  color: #F5F7FF;
+  font-weight: 200;
+}
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1;
+  height: 1;
+  margin: -1;
+}
+.wrapper {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 416px;
+}
+.main-wrapper {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 60px;
+}
+.page-name {
+  display: flex;
+  padding-top: 15px;
+  margin-bottom: 35px;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.arrow {
+  order: -1;
+}
+
+.button_style {
+  display: block;
+  width: 100%;
+  height: 35px;
+  margin-top: 25px;
+  background: #6C5EAE;
+  outline: none;
+  border: hidden;
+  border-radius: 3px;
+}
+.button_text {
+  font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #F5F7FF;
+}
+.text_button {
+  border: hidden;
+  background-color: transparent;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-weight: 350;
+  font-size: 14px;
+  text-align: center;
+  color: #BEBBC6;
+}
+.text_link {
+  color: #BEBBC6;
+}
+.top-menu {
+  width: 100%;
+  max-width: 595px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+.menu-wrap {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #28262C;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35);
+}
+.logo-menu {
+  width: 130px;
+  height: 20px;
+  margin-left: 15px;
+}
+.menu-icon-style {
+  margin-top: 3px;
+  margin-right: 15px;
+  height: 20px;
+}
+input[type="text"] {
+  padding-left: 15px;
+  font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  color: #F5F7FF;
+}
+select {
+  width: 100%;
+  height: 35px;
+  background: #28262C;
+  border: 1px solid #F5F7FF;
+  box-sizing: border-box;
+  border-radius: 3px;
+  overflow: hidden;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  margin-top: 3px;
+  font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  color: #F5F7FF;
+}

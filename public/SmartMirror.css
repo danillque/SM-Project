@@ -1,0 +1,58 @@
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1;
+  height: 1;
+  margin: -1;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px;
+  background-color: black;
+}
+.main-wrapper{
+	position: relative;
+  width: 100%;
+  height: 0px;
+  padding-bottom: 100%;
+  border-radius: 10px;
+}
+ul {
+	list-style: none;
+	margin: 0;
+  width:90%;
+  height: 90%;
+  padding: 2%;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+}
+li {
+  margin: 5px;
+padding:15px;
+  background: #111111;
+}
+
+.clock{
+	font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+	font-style: normal;
+  	color: #F5F7FF;
+	font-size: 70px;
+}
+
+.greeting{
+	margin: 0 auto;
+	font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+	font-style: normal;
+  	color: #F5F7FF;
+	font-size: 36px;
+}
+
+.weather{
+  font-family: -apple-system, "ABC Favorit Pro Trial", Helvetica, Arial, sans-serif;
+	font-style: normal;
+  	color: #F5F7FF;
+	font-size: 70px;
+}

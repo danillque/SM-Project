@@ -1,0 +1,14 @@
+{
+    "clock":{
+        "position": 1
+    },
+    "weather":{
+        "position": 2
+    },
+    "greeting":{
+        "position": 3
+    },
+    "reminder":{
+        "position": 4
+    }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "smartmirror",
+  "version": "1.0.0",
+  "description": "University project",
+  "main": "indexApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:server":"cd server.src && tsc",
+    "build:client":"cd client.src && tsc",
+    "build:clientapp":"cd client.app.src && tsc",
+    "build": "npm run build:server && npm run build:client && npm run build:clientapp",
+    "watch:server": "npm run build:server -- --watch",
+    "watch:client": "npm run build:client -- --watch",
+    "watch:clientapp": "npm run build:clientapp -- --watch",
+    "start": "node server/index.js",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danillque/SM-Project.git"
+  },
+  "author": "Gusev Danil",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.41",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
