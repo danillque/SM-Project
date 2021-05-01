@@ -1,14 +1,1 @@
-{
-    "clock":{
-        "position": 1
-    },
-    "weather":{
-        "position": 2
-    },
-    "greeting":{
-        "position": 3
-    },
-    "reminder":{
-        "position": 4
-    }
-}
+{"clock":{"position":2,"state":1},"weather":{"position":1,"state":1},"greeting":{"position":4,"state":1},"reminder":{"position":11,"state":1}}

@@ -5,6 +5,9 @@
   height: 1;
   margin: -1;
 }
+.invisible{
+  visibility: hidden;
+}
 body {
   margin: 0 auto;
   padding: 0;

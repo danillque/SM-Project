@@ -1,11 +1,12 @@
 import { Controls } from './mobile_app.js';
 main();
 function main() {
-    const widget_buttons = document.querySelectorAll('div.widgets>button');
+    const widgetButtons = document.querySelectorAll('div.widgets>button');
+    const toggles = document.querySelectorAll('label>input');
     const back = document.getElementById('back');
     if (!(back instanceof HTMLElement)) {
         return;
     }
-    new Controls(widget_buttons, back);
+    new Controls(widgetButtons, back, toggles);
 }
 //# sourceMappingURL=indexApp.js.map

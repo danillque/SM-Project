@@ -45,49 +45,54 @@ export interface Weather {
 
 export class Weather{
     weathOutput : HTMLElement;
-    widPosition : string;
     city : string;
-    appid : string = 'appid=1b9048bd6770a994133ae2c73cc8e5a2';
-    constructor(element : HTMLElement, position : string, city : string){
-        this.widPosition = position;
-        this.city = city; 
+    appId : string = 'appid=1b9048bd6770a994133ae2c73cc8e5a2';
+    socket : WebSocket;
+    constructor(element : HTMLElement){
+        this.city = "Petersburg"; 
         this.weathOutput = element;
-        this.run(this.appid,  this.city);
-        setInterval(() => this.changePosition(), 1000);
-        setInterval(() => this.run(this.appid, this.city), 300000);
+        this.socket = new WebSocket('ws://localhost:8000');
+        this._handleSocket = this._handleSocket.bind(this);
+        this.socket.addEventListener('message', this._handleSocket);
+        this.run(this.appId, this.city);
+        setInterval(() => this.run(this.appId, this.city), 300000);
     }
 
-  async run(appid : string, city : string){
-    const apistr : string = 'http://api.openweathermap.org/data/2.5/weather?q=';   
-    const russianMetrics : string = '&lang=ru&units=metric&';
-    const res = await fetch(apistr + city + russianMetrics + appid);
-      const resData : WeatherData = await res.json();
-      let finalTemp : number = Math.round(resData.main.temp);
-      this.weathOutput.textContent = finalTemp.toString() + '°C';
-   } 
+    _handleSocket(event: MessageEvent){
+      const jsonData = JSON.parse(event.data);
 
-   changePosition()
-    {
-      if(this.widPosition != this.weathOutput.dataset.value)
+      if(jsonData.weather.state == 1)
+        this.weathOutput.classList.remove('invisible');
+      else this.weathOutput.classList.add('invisible');
+
+      if(jsonData.weather.position != this.weathOutput.dataset.value)
       {
-        this.weathOutput.classList.remove('clock');
+        this.weathOutput.classList.remove('weather');
         this.weathOutput.textContent = '';
         this.weathOutput.removeAttribute('id');
 
         const posList = document.querySelectorAll<HTMLElement>( 'li' );
         for (const pos of posList)
         {
-            if(pos.dataset.value == this.widPosition)
+            if(pos.dataset.value == jsonData.weather.position)
             {
-              pos.setAttribute('id', 'tsClock'); 
-              pos.classList.add('clock');
+              pos.setAttribute('id', 'tsWeather'); 
+              pos.classList.add('weather');
               this.weathOutput = pos;
-              this.run(this.appid,  this.city);
+              this.run(this.appId,  this.city);
             }
         }
       }
     }
 
+  async run(appId : string, city : string){
+    const apiStr : string = 'http://api.openweathermap.org/data/2.5/weather?q=';   
+    const russianMetrics : string = '&lang=ru&units=metric&';
+    const res = await fetch(apiStr + city + russianMetrics + appId);
+      const resData : WeatherData = await res.json();
+      const finalTemp : number = Math.round(resData.main.temp);
+      this.weathOutput.textContent = finalTemp.toString() + '°C';
+   } 
 }
 
 

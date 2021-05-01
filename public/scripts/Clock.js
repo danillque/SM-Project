@@ -1,11 +1,34 @@
 export class Clock {
-    constructor(element, position, UTC) {
+    constructor(element) {
         this.timeOutput = element;
-        this.widPosition = position;
-        this.UTCplus = UTC;
+        this.UTCplus = 3;
+        this.socket = new WebSocket('ws://localhost:8000');
+        this._handleSocket = this._handleSocket.bind(this);
+        this.socket.addEventListener('message', this._handleSocket);
         this.run();
-        setInterval(() => this.changePosition(), 1000);
         setInterval(() => this.run(), 60000);
+    }
+    _handleSocket(event) {
+        const jsonData = JSON.parse(event.data);
+        if (jsonData.clock.state == 1)
+            this.timeOutput.classList.remove('invisible');
+        else
+            this.timeOutput.classList.add('invisible');
+        if (jsonData.clock.position != this.timeOutput.dataset.value) {
+            this.timeOutput.classList.remove('clock');
+            this.timeOutput.textContent = '';
+            this.timeOutput.removeAttribute('id');
+            const posList = document.querySelectorAll('li');
+            for (const pos of posList) {
+                if (pos.dataset.value == jsonData.clock.position) {
+                    pos.setAttribute('id', 'tsClock');
+                    pos.removeAttribute('class');
+                    pos.classList.add('clock');
+                    this.timeOutput = pos;
+                    this.run();
+                }
+            }
+        }
     }
     run() {
         let time = new Date();
@@ -19,22 +42,6 @@ export class Clock {
         }
         let clockStr = hours + ' : ' + minutes;
         this.timeOutput.textContent = clockStr;
-    }
-    changePosition() {
-        if (this.widPosition != this.timeOutput.dataset.value) {
-            this.timeOutput.classList.remove('clock');
-            this.timeOutput.textContent = '';
-            this.timeOutput.removeAttribute('id');
-            const posList = document.querySelectorAll('li');
-            for (const pos of posList) {
-                if (pos.dataset.value == this.widPosition) {
-                    pos.setAttribute('id', 'tsClock');
-                    pos.classList.add('clock');
-                    this.timeOutput = pos;
-                    this.run();
-                }
-            }
-        }
     }
 }
 //# sourceMappingURL=Clock.js.map

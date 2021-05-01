@@ -21,7 +21,7 @@ function main() {
         return;
     }
 
-    new Clock(outClock, "2", 3);
-    new Greeting(outGreet, "1");
-    new Weather(outWeather, "5", "Petersburg");
+    new Clock(outClock);
+    new Greeting(outGreet);
+    new Weather(outWeather);
 }

@@ -1,8 +1,15 @@
 export declare class Controls {
-    constructor(widget_buttons: NodeListOf<HTMLElement>, back: HTMLElement);
+    tempWid: string;
+    socket: WebSocket;
+    jsonData: any;
+    constructor(widgetButtons: NodeListOf<HTMLElement>, back: HTMLElement, toggles: NodeListOf<HTMLInputElement>);
     doAction(action: string): void;
     _switchPage(i: number | boolean): void;
+    _handleToggleSwitch(event: Event): void;
     _handleButtonClick(event: Event): void;
     _handleBackButton(event: Event): void;
-    manage_form(needed_class: string): void;
+    _handleSocket(event: MessageEvent): void;
+    manageForm(widName: string): void;
+    wsSend(data: string): void;
+    _handleRadioClick(event: Event): void;
 }

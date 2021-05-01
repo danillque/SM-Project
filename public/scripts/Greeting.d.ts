@@ -1,7 +1,7 @@
 export declare class Greeting {
     greetOutput: HTMLElement;
-    widPosition: string;
-    constructor(element: HTMLElement, position: string);
+    socket: WebSocket;
+    constructor(element: HTMLElement);
+    _handleSocket(event: MessageEvent): void;
     run(): void;
-    changePosition(): void;
 }

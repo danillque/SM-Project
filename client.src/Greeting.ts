@@ -1,35 +1,50 @@
 
-interface widgetInfo {
-    clock: {
-        position : string;
-    };
-    weather:{
-        position: string;
-    },
-    greeting:{
-        position: string;
-    },
-    reminder:{
-        position: string;
-    }
-}; 
-
 export class Greeting{
     greetOutput: HTMLElement;
-    widPosition : string;
-    constructor(element : HTMLElement, position : string){
+    socket : WebSocket;
+
+    constructor(element : HTMLElement){
         this.greetOutput = element;
-        this.widPosition = position;
+       this.socket = new WebSocket('ws://localhost:8000');
+        this._handleSocket = this._handleSocket.bind(this);
+        this.socket.addEventListener('message', this._handleSocket);
         this.run();
-        this.changePosition();
         setInterval(() => this.run(), 3600000);
     }
+
+    _handleSocket(event: MessageEvent){
+        const jsonData = JSON.parse(event.data);
+      
+        if(jsonData.greeting.state == 1)
+        this.greetOutput.classList.remove('invisible');
+        else this.greetOutput.classList.add('invisible');
+
+        if (jsonData.greeting.position != this.greetOutput.dataset.value) 
+          {
+            this.greetOutput.classList.remove('greeting');
+            this.greetOutput.textContent = '';
+            this.greetOutput.removeAttribute('id');
+      
+            const posList = document.querySelectorAll<HTMLElement>('li');
+            for (const pos of posList) 
+            {
+              if (pos.dataset.value == jsonData.greeting.position) 
+              {
+                pos.setAttribute('id', 'tsGreet');
+                pos.removeAttribute('class');
+                pos.classList.add('greeting');
+                this.greetOutput = pos;
+                this.run();
+              }
+            }
+          }
+      }
 
     run(){
 
         let time : Date = new Date();
         let hours : number = time.getHours();
-        let outstr : string = " "; 
+        let outStr : string = " "; 
         switch(hours){
             case 6:
             case 7:
@@ -37,7 +52,7 @@ export class Greeting{
             case 9: 
             case 10: 
             case 11: 
-                outstr = 'Доброе утро!';
+                outStr = 'Доброе утро!';
                 break;
             case 12:  
             case 13:  
@@ -45,7 +60,7 @@ export class Greeting{
             case 15:  
             case 16:    
             case 17:
-                outstr = 'Добрый день!';
+                outStr = 'Добрый день!';
                 break;    
             case 18:
             case 19:
@@ -53,7 +68,7 @@ export class Greeting{
             case 21:
             case 22:
             case 23: 
-                outstr = 'Добрый вечер!';
+                outStr = 'Добрый вечер!';
                 break;
             case 0:    
             case 1:
@@ -61,40 +76,10 @@ export class Greeting{
             case 3:
             case 4:
             case 5:    
-                outstr = 'Доброй ночи!';
+                outStr = 'Доброй ночи!';
                 break;
         }
-        this.greetOutput.textContent = outstr;
-    }
-
-
-    changePosition()
-    {
-        const socket = new WebSocket('ws://localhost:8000');
-
-        socket.addEventListener('message', function(event){
-            const temp :  widgetInfo = JSON.parse(event.data);
-            console.log(temp);
-        });  
-
-      if(this.widPosition != this.greetOutput.dataset.value)
-      {
-        this.greetOutput.classList.remove('clock');
-        this.greetOutput.textContent = '';
-        this.greetOutput.removeAttribute('id');
-
-        const posList = document.querySelectorAll<HTMLElement>( 'li' );
-        for (const pos of posList)
-        {
-            if(pos.dataset.value === this.widPosition)
-            {
-              pos.setAttribute('id', 'tsClock'); 
-              pos.classList.add('clock');
-              this.greetOutput = pos;
-              this.run();
-            }
-        }
-      }
+        this.greetOutput.textContent = outStr;
     }
     
 }

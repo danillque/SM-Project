@@ -1,11 +1,33 @@
-;
 export class Greeting {
-    constructor(element, position) {
+    constructor(element) {
         this.greetOutput = element;
-        this.widPosition = position;
+        this.socket = new WebSocket('ws://localhost:8000');
+        this._handleSocket = this._handleSocket.bind(this);
+        this.socket.addEventListener('message', this._handleSocket);
         this.run();
-        this.changePosition();
         setInterval(() => this.run(), 3600000);
+    }
+    _handleSocket(event) {
+        const jsonData = JSON.parse(event.data);
+        if (jsonData.greeting.state == 1)
+            this.greetOutput.classList.remove('invisible');
+        else
+            this.greetOutput.classList.add('invisible');
+        if (jsonData.greeting.position != this.greetOutput.dataset.value) {
+            this.greetOutput.classList.remove('greeting');
+            this.greetOutput.textContent = '';
+            this.greetOutput.removeAttribute('id');
+            const posList = document.querySelectorAll('li');
+            for (const pos of posList) {
+                if (pos.dataset.value == jsonData.greeting.position) {
+                    pos.setAttribute('id', 'tsGreet');
+                    pos.removeAttribute('class');
+                    pos.classList.add('greeting');
+                    this.greetOutput = pos;
+                    this.run();
+                }
+            }
+        }
     }
     run() {
         let time = new Date();
@@ -46,27 +68,6 @@ export class Greeting {
                 break;
         }
         this.greetOutput.textContent = outstr;
-    }
-    changePosition() {
-        const socket = new WebSocket('ws://localhost:8000');
-        socket.addEventListener('message', function (event) {
-            const temp = JSON.parse(event.data);
-            console.log(temp);
-        });
-        if (this.widPosition != this.greetOutput.dataset.value) {
-            this.greetOutput.classList.remove('clock');
-            this.greetOutput.textContent = '';
-            this.greetOutput.removeAttribute('id');
-            const posList = document.querySelectorAll('li');
-            for (const pos of posList) {
-                if (pos.dataset.value === this.widPosition) {
-                    pos.setAttribute('id', 'tsClock');
-                    pos.classList.add('clock');
-                    this.greetOutput = pos;
-                    this.run();
-                }
-            }
-        }
     }
 }
 //# sourceMappingURL=Greeting.js.map

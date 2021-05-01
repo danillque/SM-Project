@@ -42,10 +42,10 @@ export interface WeatherData {
 }
 export declare class Weather {
     weathOutput: HTMLElement;
-    widPosition: string;
     city: string;
     appid: string;
-    constructor(element: HTMLElement, position: string, city: string);
+    socket: WebSocket;
+    constructor(element: HTMLElement);
+    _handleSocket(event: MessageEvent): void;
     run(appid: string, city: string): Promise<void>;
-    changePosition(): void;
 }

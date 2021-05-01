@@ -34,68 +34,15 @@ const httpServer = http_1.createServer(app);
 const wss = new WebSocket.Server({ server: httpServer });
 const widgetsFile = path_1.resolve(rootPath, 'widget.json');
 wss.on('connection', async (ws) => {
-    const content = await promises_1.readFile(widgetsFile, 'utf8');
-    const feedbacks = JSON.parse(content);
-    ws.send(feedbacks);
-    ws.on('message', (message) => {
-        console.log("recieved", message);
-        ws.send("Recieved youe message, it is" + message);
+    ws.on('message', async (message) => {
+        if (message.toString() !== "request")
+            await promises_1.writeFile(widgetsFile, message.toString());
+        const content = await promises_1.readFile(widgetsFile, 'utf8');
+        for (const client of wss.clients)
+            client.send(content);
+        console.log("Content was send to clients.");
     });
 });
-/*
-
-const messages: string[] = [];
-
-wss.on(
-    'connection',
-    ( ws ) =>
-    {
-        ws.on( 'message', () => onClientMessage );
-        ws.send(
-            JSON.stringify( messages ),
-            onSendError,
-        );
-    },
-);
-
-function onClientMessage( this: WebSocket, data: WebSocket.Data ): void
-{
-    if ( typeof data !== 'string' )
-    {
-        this.send(
-            JSON.stringify( {
-                message: 'Wrong data type',
-            } )
-        );
-        
-        return;
-    }
-    
-    messages.push( data );
-    broadcastMessages();
-}
-
-function broadcastMessages(): void
-{
-    for ( const client of wss.clients )
-    {
-        if ( client.readyState === WebSocket.OPEN )
-        {
-            client.send(
-                JSON.stringify( messages ),
-                onSendError,
-            );
-        }
-    }
-}
-
-function onSendError( error?: Error )
-{
-    if ( error )
-    {
-        console.error( error );
-    }
-} */
 app.get('/', (_req, _res) => {
     console.log("Here!");
 });
