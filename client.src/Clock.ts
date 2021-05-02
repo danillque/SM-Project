@@ -17,18 +17,18 @@ export class Clock {
   _handleSocket(event: MessageEvent) {
     const jsonData = JSON.parse(event.data);
 
-    if(jsonData.clock.state == 1)
+    if(jsonData.clock.state === 1)
         this.timeOutput.classList.remove('invisible');
     else this.timeOutput.classList.add('invisible');
 
-    if (jsonData.clock.position != this.timeOutput.dataset.value) {
+    if (jsonData.clock.position.toString() !== this.timeOutput.dataset.value) {
       this.timeOutput.classList.remove('clock');
       this.timeOutput.textContent = '';
       this.timeOutput.removeAttribute('id'); 
 
       const posList = document.querySelectorAll<HTMLElement>('li');
       for (const pos of posList) {
-        if (pos.dataset.value == jsonData.clock.position) {
+        if (pos.dataset.value === jsonData.clock.position.toString()) {
           pos.setAttribute('id', 'tsClock');
           pos.removeAttribute('class');
           pos.classList.add('clock');
@@ -41,7 +41,7 @@ export class Clock {
 
 
   run() {
-    let time: Date = new Date();
+    const time: Date = new Date();
     let hours: string = ((time.getUTCHours() + this.UTCplus) % 24).toString();
     let minutes: string = time.getUTCMinutes().toString();
 

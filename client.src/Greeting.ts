@@ -15,11 +15,11 @@ export class Greeting{
     _handleSocket(event: MessageEvent){
         const jsonData = JSON.parse(event.data);
       
-        if(jsonData.greeting.state == 1)
+        if(jsonData.greeting.state === 1)
         this.greetOutput.classList.remove('invisible');
         else this.greetOutput.classList.add('invisible');
 
-        if (jsonData.greeting.position != this.greetOutput.dataset.value) 
+        if (jsonData.greeting.position.toString() !== this.greetOutput.dataset.value) 
           {
             this.greetOutput.classList.remove('greeting');
             this.greetOutput.textContent = '';
@@ -28,7 +28,7 @@ export class Greeting{
             const posList = document.querySelectorAll<HTMLElement>('li');
             for (const pos of posList) 
             {
-              if (pos.dataset.value == jsonData.greeting.position) 
+              if (pos.dataset.value === jsonData.greeting.position.toString()) 
               {
                 pos.setAttribute('id', 'tsGreet');
                 pos.removeAttribute('class');
@@ -42,8 +42,8 @@ export class Greeting{
 
     run(){
 
-        let time : Date = new Date();
-        let hours : number = time.getHours();
+        const time : Date = new Date();
+        const hours : number = time.getHours();
         let outStr : string = " "; 
         switch(hours){
             case 6:

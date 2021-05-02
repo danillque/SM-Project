@@ -61,11 +61,11 @@ export class Weather{
     _handleSocket(event: MessageEvent){
       const jsonData = JSON.parse(event.data);
 
-      if(jsonData.weather.state == 1)
+      if(jsonData.weather.state === 1)
         this.weathOutput.classList.remove('invisible');
       else this.weathOutput.classList.add('invisible');
 
-      if(jsonData.weather.position != this.weathOutput.dataset.value)
+      if(jsonData.weather.position.toString() !== this.weathOutput.dataset.value)
       {
         this.weathOutput.classList.remove('weather');
         this.weathOutput.textContent = '';
@@ -74,7 +74,7 @@ export class Weather{
         const posList = document.querySelectorAll<HTMLElement>( 'li' );
         for (const pos of posList)
         {
-            if(pos.dataset.value == jsonData.weather.position)
+            if(pos.dataset.value === jsonData.weather.position.toString())
             {
               pos.setAttribute('id', 'tsWeather'); 
               pos.classList.add('weather');

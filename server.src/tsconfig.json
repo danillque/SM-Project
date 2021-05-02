@@ -3,9 +3,7 @@
 		"target": "ESNEXT", 
 		"module": "commonjs",
 		"esModuleInterop": true,                          
-    	/* "lib": ["ESNEXT"], */
-		"lib": ["DOM"],
-
+    	"lib": ["ESNEXT"], 
 
         "jsx": "react",
 		

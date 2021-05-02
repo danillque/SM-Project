@@ -78,7 +78,7 @@ export class Controls {
         if (!(target instanceof HTMLInputElement)) {
             return;
         }
-        if(target.checked == true) 
+        if(target.checked === true) 
             this.jsonData[target.value].state = 1;
         else this.jsonData[target.value].state = 0;  
         this.socket.send(JSON.stringify(this.jsonData));  
@@ -115,11 +115,11 @@ export class Controls {
 
         const radios = document.querySelectorAll<HTMLInputElement>('li>input');
         for (const radio of radios) {
-            if (this.jsonData[widName].position == Number(radio.value))
+            if (this.jsonData[widName].position === Number(radio.value))
                 radio.checked = true;
             else radio.checked = false;
             radio.removeAttribute('class');
-            if (radio.checked == true)
+            if (radio.checked === true)
                 radio.classList.add(widName + "_icon");
             this.tempWid = widName;
             this._handleRadioClick = this._handleRadioClick.bind(this);
@@ -146,7 +146,7 @@ export class Controls {
         }
         for (const radio of radios) {
             radio.removeAttribute('class');
-            if (radio.checked == true)
+            if (radio.checked === true)
                 this.jsonData[this.tempWid].position = Number(radio.value);
         }
 
